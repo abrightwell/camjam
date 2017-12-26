@@ -1,0 +1,20 @@
+hash: a5c4c899f73bf3e6d9a7e4e6a0b42fbd291acb5205251768cf8428e1317c4d4e
+updated: 2017-07-01T18:48:48.686244095-04:00
+imports:
+- name: github.com/abrightwell/webcam
+  version: 103f67083be008ccf451ab9c2e268fb219dc7354
+- name: github.com/blackjack/webcam
+  version: c66781168cf8f7c1c9f3c431af4a34c7691b948c
+  subpackages:
+  - ioctl
+- name: github.com/inconshreveable/mousetrap
+  version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/spf13/cobra
+  version: 8c6fa02d2225de0f9bdcb7ca912556f68d172d8c
+- name: github.com/spf13/pflag
+  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
+- name: golang.org/x/sys
+  version: 4ed4d404df456f81e878683a0363ed3013a59003
+  subpackages:
+  - unix
+testImports: []
