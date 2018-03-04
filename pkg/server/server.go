@@ -13,7 +13,6 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/abrightwell/camjam/pkg/config"
-	"github.com/abrightwell/camjam/pkg/log"
 	"github.com/abrightwell/camjam/pkg/util"
 	"github.com/abrightwell/webcam"
 )
