@@ -2,3 +2,10 @@ language: go
 
 go:
   - "1.8.x"
+  - "master"
+
+before_install:
+  - go get -u github.com/golang/dep/cmd/dep
+
+install:
+  - make
