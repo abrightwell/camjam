@@ -10,6 +10,7 @@ import (
 	"sync"
 
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/abrightwell/camjam/pkg/config"
 	"github.com/abrightwell/camjam/pkg/log"

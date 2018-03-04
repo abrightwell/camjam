@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
 	"github.com/abrightwell/camjam/pkg/config"
-	"github.com/abrightwell/camjam/pkg/log"
 	"github.com/abrightwell/camjam/pkg/server"
 )
 
@@ -37,10 +37,17 @@ func init() {
 
 	flags.StringVarP(&configFile, "config", "", "", "path to config file")
 	flags.StringVarP(&logLevel, "log-level", "", "info", "logging level")
+
+	log.SetFormatter(&log.TextFormatter{
+		ForceColors:   true,
+		FullTimestamp: true,
+	})
+	log.SetOutput(os.Stdout)
 }
 
 func runCamJam(cmd *cobra.Command, args []string) error {
-	log.SetLevel(logLevel)
+	level, _ := log.ParseLevel(logLevel)
+	log.SetLevel(level)
 
 	if configFile != "" {
 		config.SetConfigFile(configFile)
