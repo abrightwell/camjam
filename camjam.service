@@ -1,0 +1,12 @@
+[Unit]
+Description=FRC Multplexing Camera Server
+BindsTo=dev-video0.device
+After=network.target auditd.service dev-video0.device
+
+[Service]
+ExecStart=/usr/local/bin/camjam
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+Alias=camjam.service
