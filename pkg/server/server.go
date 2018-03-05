@@ -1,7 +1,6 @@
 package server
 
 import (
-	"encoding/json"
 	"fmt"
 	"mime/multipart"
 	"net/http"
@@ -13,7 +12,6 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/abrightwell/camjam/pkg/config"
-	"github.com/abrightwell/camjam/pkg/util"
 	"github.com/abrightwell/webcam"
 )
 
@@ -38,7 +36,6 @@ func (s *Server) Initialize(c config.Config) {
 
 func (s *Server) initializeRoutes() {
 	s.Router.HandleFunc("/stream", s.streamHandler).Methods("GET")
-	s.Router.HandleFunc("/cams", s.camsHandler).Methods("GET")
 	s.Router.HandleFunc("/switch/{id:[0-9]+}", s.switchCamHandler).Methods("PUT")
 }
 
@@ -114,17 +111,6 @@ func (s *Server) streamHandler(w http.ResponseWriter, r *http.Request) {
 
 		partWriter.Write(frame)
 	}
-}
-
-// Query the underlying system for all the attached webcams and return
-// information about each.
-func (s *Server) camsHandler(w http.ResponseWriter, r *http.Request) {
-	log.Info("List camera info request")
-	cameras := util.ListCameras()
-	response, _ := json.Marshal(cameras)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(response)
 }
 
 func (s *Server) switchCamHandler(w http.ResponseWriter, r *http.Request) {
