@@ -1,12 +1,12 @@
 server:
-  address: 127.0.0.1:8000
+  address: 0.0.0.0:5800
 cameras:
-        #  - name: Onboard
-        #device: /dev/video0
-        #format: MJPG
-        #width: 320
-        #  height: 240
-  - name: LifeCam
+  - name: Front Camera
+    device: /dev/video0
+    format: MJPG
+    width: 320
+    height: 240
+  - name: Rear Camera
     device: /dev/video1
     format: MJPG
     width: 320
