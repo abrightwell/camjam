@@ -8,11 +8,11 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/blackjack/webcam"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/abrightwell/camjam/pkg/config"
-	"github.com/abrightwell/webcam"
 )
 
 type Server struct {
