@@ -1,6 +1,8 @@
 package config
 
 import (
+	"time"
+
 	"github.com/spf13/viper"
 )
 
@@ -10,7 +12,8 @@ type Config struct {
 }
 
 type ServerConfig struct {
-	Address string `mapstructure:"address"`
+	Address  string        `mapstructure:"address"`
+	Interval time.Duration `mapstructure:"interval"`
 }
 
 type CameraConfig struct {

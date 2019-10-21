@@ -1,13 +1,14 @@
 server:
   address: 0.0.0.0:5800
+  interval: 100ms
 cameras:
   - name: Front Camera
     device: /dev/video0
     format: MJPG
     width: 320
     height: 240
-  - name: Rear Camera
-    device: /dev/video1
-    format: MJPG
-    width: 320
-    height: 240
+    #- name: Rear Camera
+    #device: /dev/video1
+    #format: MJPG
+    #width: 320
+    #height: 240

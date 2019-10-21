@@ -7,6 +7,7 @@ import (
 	"net/textproto"
 	"strconv"
 	"sync"
+	"time"
 
 	"github.com/blackjack/webcam"
 	"github.com/gorilla/mux"
@@ -76,15 +77,20 @@ func (s *Server) Start() {
 }
 
 func (s *Server) startCamera(cam *webcam.Webcam) {
+	last := time.Now()
 	for {
-		cam.WaitForFrame(5)
+		now := time.Now()
 		frame, err := cam.ReadFrame()
+		cam.WaitForFrame(5)
 
 		if err != nil {
 			log.Error(err.Error())
 		}
 
-		s.frames[cam] <- frame
+		if now.After(last.Add(s.config.Server.Interval)) {
+			s.frames[cam] <- frame
+			last = time.Now()
+		}
 	}
 }
 
