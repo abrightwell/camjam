@@ -77,9 +77,10 @@ func (s *Server) Start() {
 }
 
 func (s *Server) startCamera(cam *webcam.Webcam) {
-	last := time.Now()
-	for {
-		now := time.Now()
+	ticker := time.NewTicker(s.config.Server.Interval)
+
+	for _ = range ticker.C {
+		log.Info("Tick")
 		frame, err := cam.ReadFrame()
 		cam.WaitForFrame(5)
 
@@ -87,10 +88,7 @@ func (s *Server) startCamera(cam *webcam.Webcam) {
 			log.Error(err.Error())
 		}
 
-		if now.After(last.Add(s.config.Server.Interval)) {
-			s.frames[cam] <- frame
-			last = time.Now()
-		}
+		s.frames[cam] <- frame
 	}
 }
 
