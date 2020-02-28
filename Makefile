@@ -1,23 +1,28 @@
-.PHONY: all build resolve clean
+.DEFAULT_GOAL := help
 
 PROJECT_DIR := $(shell pwd)
 BUILD_DIR := $(PROJECT_DIR)/build
-VENDOR_DIR := $(PROJECT_DIR)/vendor
 
-all: clean resolve build
+GOARCH ?= amd64
 
+.PHONY: all
+all: clean build
+
+.PHONY: clean
+clean: ## Clean build artifacts
 clean:
-	@echo "Cleaning project..."
-	@echo "Removing 'build' directory"
+	$(info "Cleaning project...")
+	$(info "Removing 'build' directory")
 	@rm -rf $(BUILD_DIR)
-	@echo "Removing 'vendor' directory"
-	@rm -rf $(VENDOR_DIR)
 
-resolve:
-	@echo "Resolving dependencies..."
-	@dep ensure -v
-
+.PHONY: build
+build: ## Build executable
 build:
-	@echo "Building project... ${GOARCH}"
+	$(info "Building project... $(GOARCH)")
 	@go build -o $(BUILD_DIR)/camjam \
 		-ldflags='-s -w'
+
+.PHONY: help
+help: ALIGN=14
+help: ## Print this message
+	@awk -F ': ## ' -- "/^[^':]+: ## /"' { printf "'$$(tput bold)'%-$(ALIGN)s'$$(tput sgr0)' %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
