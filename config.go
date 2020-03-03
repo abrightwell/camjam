@@ -1,9 +1,7 @@
-package config
+package main
 
 import (
 	"time"
-
-	"github.com/spf13/viper"
 )
 
 type Config struct {
@@ -22,25 +20,4 @@ type CameraConfig struct {
 	Format string `mapstructure:"format"`
 	Width  int    `mapstructure:"width"`
 	Height int    `mapstructure:"height"`
-}
-
-func init() {
-	viper.SetConfigType("yaml")
-	viper.SetConfigName("config")
-	viper.AddConfigPath("/etc/camjam")
-	viper.AddConfigPath("$HOME/.camjam")
-	viper.AddConfigPath(".")
-}
-
-func SetConfigFile(file string) {
-	viper.SetConfigFile(file)
-}
-
-func ReadConfig() Config {
-	var c Config
-
-	viper.ReadInConfig()
-	viper.Unmarshal(&c)
-
-	return c
 }

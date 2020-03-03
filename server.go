@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"fmt"
@@ -12,14 +12,12 @@ import (
 	"github.com/blackjack/webcam"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
-
-	"github.com/abrightwell/camjam/pkg/config"
 )
 
 type Server struct {
 	Router  *mux.Router
 	Cameras []*webcam.Webcam
-	config  config.Config
+	config  Config
 	current *webcam.Webcam
 	frames  map[*webcam.Webcam]chan []byte
 	lock    *sync.Mutex
@@ -27,7 +25,7 @@ type Server struct {
 
 var quit chan (bool) = make(chan (bool), 1)
 
-func (s *Server) Initialize(c config.Config) {
+func (s *Server) Initialize(c Config) {
 	s.Router = mux.NewRouter()
 	s.config = c
 	s.lock = &sync.Mutex{}
