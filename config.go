@@ -18,6 +18,6 @@ type CameraConfig struct {
 	Name   string `mapstructure:"name"`
 	Device string `mapstructure:"device"`
 	Format string `mapstructure:"format"`
-	Width  int    `mapstructure:"width"`
-	Height int    `mapstructure:"height"`
+	Width  uint32 `mapstructure:"width"`
+	Height uint32 `mapstructure:"height"`
 }
