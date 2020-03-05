@@ -1,5 +1,5 @@
-# Front Camera
-KERNEL=="video*", KERNELS=="2-1:1.0", SYSMLINK+="camjam_front"
+# Front Camera - USB Bus 2 Port 1 - /dev/camjam_front
+KERNEL=="video*", SUBSYSTEM=="video4linux", KERNELS=="2-1:1.0", SYMLINK+="camjam_front"
 
-# Rear Camera
-KERNEL=="video*", KERNELS=="2-2:1.0", SYSMLINK+="camjam_rear"
+# Rear Camera - USB Bus 2 Port 2 - /dev/camjam_rear
+KERNEL=="video*", SUBSYSTEM=="video4linux", KERNELS=="2-2:1.0", SYMLINK+="camjam_rear"
